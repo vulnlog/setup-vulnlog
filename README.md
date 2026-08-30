@@ -6,6 +6,18 @@
 Installs the [Vulnlog](https://github.com/vulnlog/vulnlog) CLI on a GitHub Actions runner and puts it on `PATH`. Install
 once per job; every later step can call `vulnlog`.
 
+## What is Vulnlog?
+
+**Supply chain security, as code.** You analyse each SCA finding once and record the verdict in a YAML file in your Git
+repository, where it is reviewed in pull requests like any other change. The CLI then turns that file into what everyone
+else needs:
+
+- Suppression and ignore files for scanners such as Trivy and Snyk, so CI stays green on triaged findings.
+- An HTML Vulnerability Impact Report that answers "are you affected by X?" for stakeholders and customers.
+
+See [vulnlog/vulnlog](https://github.com/vulnlog/vulnlog) for the CLI, the YAML format, and the full documentation at
+[vulnlog.dev](https://vulnlog.dev).
+
 ## Usage
 
 ```yaml
