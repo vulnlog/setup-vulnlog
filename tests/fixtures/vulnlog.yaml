@@ -1,0 +1,12 @@
+# $schema: https://vulnlog.dev/schema/vulnlog-v1.json
+---
+schemaVersion: "1"
+
+project:
+  organization: acme
+  name: demo
+  author: CI
+
+releases: []
+
+vulnerabilities: []

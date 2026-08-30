@@ -1,0 +1,39 @@
+name: 'Setup Vulnlog CLI'
+description: 'Install the Vulnlog CLI and put it on PATH, so later steps can call vulnlog directly.'
+author: 'Vulnlog'
+
+branding:
+  icon: 'shield'
+  color: 'purple'
+
+inputs:
+  version:
+    description: >-
+      Vulnlog CLI version to install, for example "0.17.0" (a leading "v" is accepted). "latest" resolves the newest stable release.
+    required: false
+    default: 'latest'
+
+outputs:
+  version:
+    description: 'The resolved version that was installed, without a leading "v".'
+    value: ${{ steps.install.outputs.version }}
+  distribution:
+    description: >-
+      The build that was installed: "native" on runners with a native binary, "jvm" on the rest.
+    value: ${{ steps.install.outputs.distribution }}
+  path:
+    description: 'Absolute path to the installed vulnlog executable.'
+    value: ${{ steps.install.outputs.path }}
+  cache-hit:
+    description: >-
+      "true" when the version was already in the runner tool cache and no download happened.
+    value: ${{ steps.install.outputs.cache-hit }}
+
+runs:
+  using: 'composite'
+  steps:
+    - id: install
+      shell: bash
+      env:
+        VULNLOG_INPUT_VERSION: ${{ inputs.version }}
+      run: bash "${GITHUB_ACTION_PATH//\\//}/install.sh"
